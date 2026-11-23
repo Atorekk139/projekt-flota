@@ -6,15 +6,16 @@
 
 using namespace std;
 
+// Klasa zarzadzajaca kolekcja wskaznikow na obiekty typu Pojazd
 class Flota {
 private:
-    vector<Pojazd> pojazdy;
+    vector<Pojazd*> pojazdy;
 
 public:
-    void dodajPojazd(const Pojazd& p);
-    void usunPojazd(string rej);
+    ~Flota(); // Zwalnia pamiec po obiektach utworzonych przez new
+    void dodajPojazd(Pojazd* p);
+    void sortujPoKoszcie(); // Sortuje pojazdy rosnaco po koszcie eksploatacji (uzywa operatora <)
     void wyswietlWszystkie() const;
-    Pojazd* znajdzPojazd(string rej);
 };
 
 #endif

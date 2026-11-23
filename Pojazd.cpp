@@ -10,26 +10,38 @@ Pojazd::Pojazd(string m, string mod, string rej, double prz) {
     przebieg = prz;
 }
 
-string Pojazd::getMarka() const {
-    return marka;
-}
-
-string Pojazd::getModel() const {
-    return model;
-}
-
 string Pojazd::getRejestracja() const {
     return rejestracja;
 }
 
-double Pojazd::getPrzebieg() const {
-    return przebieg;
-}
-
-void Pojazd::setPrzebieg(double prz) {
-    przebieg = prz;
-}
-
 void Pojazd::wyswietl() const {
-    cout << marka << " " << model << " | Rejestracja: " << rejestracja << " | Przebieg: " << przebieg << " km" << endl;
+    cout << marka << " " << model << " | Rejestracja: " << rejestracja << " | Przebieg: " << przebieg << " km";
+}
+
+PojazdOsobowy::PojazdOsobowy(string m, string mod, string rej, double prz, int miejsca) 
+    : Pojazd(m, mod, rej, prz) {
+    liczbaMiejsc = miejsca;
+}
+
+void PojazdOsobowy::wyswietl() const {
+    Pojazd::wyswietl();
+    cout << " | Miejsca: " << liczbaMiejsc << " | Koszt: " << obliczKosztEksploatacji() << " PLN" << endl;
+}
+
+double PojazdOsobowy::obliczKosztEksploatacji() const {
+    return przebieg * 0.60;
+}
+
+PojazdCiezarowy::PojazdCiezarowy(string m, string mod, string rej, double prz, double lad) 
+    : Pojazd(m, mod, rej, prz) {
+    ladownosc = lad;
+}
+
+void PojazdCiezarowy::wyswietl() const {
+    Pojazd::wyswietl();
+    cout << " | Ladownosc: " << ladownosc << " t | Koszt: " << obliczKosztEksploatacji() << " PLN" << endl;
+}
+
+double PojazdCiezarowy::obliczKosztEksploatacji() const {
+    return przebieg * 2.20;
 }

@@ -1,32 +1,19 @@
 #include "Flota.h"
-#include <iostream>
 
 using namespace std;
 
-void Flota::dodajPojazd(const Pojazd& p) {
-    pojazdy.push_back(p);
+Flota::~Flota() {
+    for (size_t i = 0; i < pojazdy.size(); i++) {
+        delete pojazdy[i];
+    }
 }
 
-void Flota::usunPojazd(string rej) {
-    for (size_t i = 0; i < pojazdy.size(); i++) {
-        if (pojazdy[i].getRejestracja() == rej) {
-            pojazdy.erase(pojazdy.begin() + i);
-            break;
-        }
-    }
+void Flota::dodajPojazd(Pojazd* p) {
+    pojazdy.push_back(p);
 }
 
 void Flota::wyswietlWszystkie() const {
     for (size_t i = 0; i < pojazdy.size(); i++) {
-        pojazdy[i].wyswietl();
+        pojazdy[i]->wyswietl();
     }
-}
-
-Pojazd* Flota::znajdzPojazd(string rej) {
-    for (size_t i = 0; i < pojazdy.size(); i++) {
-        if (pojazdy[i].getRejestracja() == rej) {
-            return &pojazdy[i];
-        }
-    }
-    return nullptr;
 }
