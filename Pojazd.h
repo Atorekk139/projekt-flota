@@ -6,7 +6,7 @@
 using namespace std;
 
 class Pojazd {
-private:
+protected:
     string marka;
     string model;
     string rejestracja;
@@ -14,14 +14,31 @@ private:
 
 public:
     Pojazd(string m, string mod, string rej, double prz);
+    virtual ~Pojazd() {}
 
-    string getMarka() const;
-    string getModel() const;
     string getRejestracja() const;
-    double getPrzebieg() const;
+    virtual void wyswietl() const;
+    virtual double obliczKosztEksploatacji() const = 0;
+};
 
-    void setPrzebieg(double prz);
-    void wyswietl() const;
+class PojazdOsobowy : public Pojazd {
+private:
+    int liczbaMiejsc;
+
+public:
+    PojazdOsobowy(string m, string mod, string rej, double prz, int miejsca);
+    void wyswietl() const override;
+    double obliczKosztEksploatacji() const override;
+};
+
+class PojazdCiezarowy : public Pojazd {
+private:
+    double ladownosc;
+
+public:
+    PojazdCiezarowy(string m, string mod, string rej, double prz, double lad);
+    void wyswietl() const override;
+    double obliczKosztEksploatacji() const override;
 };
 
 #endif

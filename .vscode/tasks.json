@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Kompiluj projekt floty",
+            "command": "cl.exe",
+            "args": [
+                "/EHsc",
+                "main.cpp",
+                "Pojazd.cpp",
+                "Flota.cpp",
+                "/Fe:flota.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        }
+    ]
+}
